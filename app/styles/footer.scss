@@ -1,0 +1,28 @@
+.footer {
+  padding: 36px 0;
+  margin-top: 70px;
+  background-color: #1c232e;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+
+  @media (min-width: 700px) {
+    margin-top: 0;
+  }
+
+  &__paragraph {
+    margin-bottom: 45px;
+  }
+
+  &-nav {
+    &__item {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 8px;
+
+      &:not(:last-child) {
+        border-right: 1px solid #ffffff;
+      }
+    }
+  }
+}

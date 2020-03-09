@@ -1,0 +1,58 @@
+.heading-primary {
+  font-size: 3.6rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.heading-secondary {
+  color: #000000;
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+}
+
+.paragraph {
+  color: #000;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 400;
+
+  &--white {
+    color: #fff;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #fff;
+  background-color: #00aeef;
+  border-radius: 4px;
+  width: 132px;
+  height: 42px;
+  border: none;
+  outline: none;
+
+  &__secondary {
+    color: #00aeef;
+    border: 2px solid #00aeef;
+    border-radius: 4px;
+    background-color: transparent;
+    width: 100px;
+    height: 36px;
+  }
+
+  &--nav {
+    width: 80px;
+    height: 35px;
+
+    &:first-child {
+      margin-right: 12px;
+    }
+  }
+}
+
+.price {
+  font-size: 14px;
+}

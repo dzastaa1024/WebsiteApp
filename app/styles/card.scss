@@ -1,0 +1,56 @@
+.card {
+  &:not(:last-child) {
+    margin-bottom: 65px;
+  }
+
+  .image {
+    margin-bottom: 25px;
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+
+    .tag {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      text-transform: uppercase;
+      font-size: 16px;
+      color: #fff;
+      padding: 3px 5px;
+    }
+  }
+}
+
+@media (min-width: 1300px) {
+  .card {
+    display: flex;
+
+    .image {
+      flex: 0 0 200px;
+      align-self: flex-start;
+
+      .tag {
+        top: unset;
+        bottom: 30px;
+      }
+    }
+
+    .textBox {
+      padding: 0 0 12px 30px;
+
+      .heading-secondary {
+        font-size: 24px;
+      }
+
+      .paragraph {
+        font-size: 18px;
+      }
+
+      .price {
+        font-size: 14px;
+      }
+    }
+  }
+}

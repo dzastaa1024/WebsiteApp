@@ -1,0 +1,17 @@
+.container {
+  width: 90vw;
+  margin: auto;
+  position: relative;
+
+  @media (min-width: 700px) {
+    width: 80vw;
+  }
+
+  @media (min-width: 850px) {
+    width: 75vw;
+  }
+
+  &--wide {
+    width: 90vw;
+  }
+}
