@@ -14,40 +14,64 @@ fetch("https://learn.accountingcpd.net/ACPD/API/Test/SampleObject")
   });
 
 let store = [];
+let numOfElements = 0;
+let activeFilter = "";
 
 function saveData(items) {
+  // deklaracja funkcji
   store = items;
   render(store);
 }
 
+const loadmore = document.querySelector("#loadmore");
 const navTabs = document.querySelectorAll(".nav-menu__item");
+const app = document.querySelector("#list");
+
+loadmore.addEventListener("click", function() {
+  if (activeFilter === "all courses" || activeFilter === "") {
+    const newarray = store.slice(numOfElements, numOfElements + 10);
+    return render(newarray);
+  }
+  const filteredItems = store.filter(item => item.type === activeFilter);
+  const newarray = filteredItems.slice(numOfElements, numOfElements + 10);
+  render(newarray);
+  console.log(filteredItems);
+  console.log(newarray);
+  console.log(numOfElements);
+});
 
 [...navTabs].forEach(function(navTab) {
+  // co znacze te trzy kropeczki, dlaczego wewnatrz jest nazwa function? // kropeczki dodaja nam metody np bo to co pobieramy przez quwry jest ograniczona przez metody , my tu w sumie nie potrzebowalismy bo foreach byl ale jest to dobra praktyka
   navTab.addEventListener("click", function() {
-    const activeFilter = navTab.innerHTML.toLowerCase();
-
+    numOfElements = 0;
+    activeFilter = navTab.innerHTML.toLowerCase();
     // remove all 'active' classes from navigation tabs
     navTabs.forEach(nt => nt.classList.remove("nav-menu__item--active"));
 
     // add 'active' class to clicked navigation tab
     navTab.classList.add("nav-menu__item--active");
+    3;
 
     if (activeFilter === "all courses") {
-      return render(store);
+      return render(store); // tutaj return powoduje ze funckja juz nie idzie dalej, ta co na klika
     }
 
     const filterdItems = store.filter(item => item.type === activeFilter);
 
+    app.innerHTML = ""; // po co zerujemy kontent? - zeby sie nie sklajaly klejne elementy po klikaniu
     render(filterdItems);
   });
 });
 
 function render(items) {
-  const app = document.querySelector("#list");
   // reset list
-  app.innerHTML = "";
 
-  items.forEach(item => {
+  items.forEach((item, index) => {
+    if (index >= 10) {
+      return;
+    }
+    numOfElements++;
+
     // card
     const card = document.createElement("div");
     card.classList.add("card");
@@ -57,10 +81,11 @@ function render(items) {
 
     // image
     const img = document.createElement("img");
-    const imageSrc = item.imageSrc.replace(".jpg", "");
+    const imageSrc = item.imageSrc.replace(".jpg", ""); // czy tu zamieniamy .jpg na pusty kontent? - tak , imageSrc to jest z danych
+
     img.setAttribute(
       "srcset",
-      `./img/${imageSrc}.jpg 300w, ./img/${imageSrc}@2x.jpg 1000w`
+      `./img/${imageSrc}.jpg 300w, ./img/${imageSrc}@2x.jpg 1000w` // tutaj jako drugi argument ustawiamy wartosc srcset?
     );
     img.setAttribute(
       "sizes",
