@@ -1,16 +1,16 @@
 fetch("https://learn.accountingcpd.net/ACPD/API/Test/SampleObject")
-  .then(function(response) {
+  .then(function (response) {
     if (response.ok) {
       return response.json();
     } else {
       return Promise.reject(response);
     }
   })
-  .then(function(data) {
+  .then(function (data) {
     saveData(data);
   })
-  .catch(function(err) {
-    console.warn("Something went wrong.", err);
+  .catch(function (err) {
+    console.log("Something went wrong.", err);
   });
 
 let store = [];
@@ -27,12 +27,12 @@ const loadmore = document.querySelector("#loadmore");
 const navTabs = document.querySelectorAll(".nav-menu__item");
 const app = document.querySelector("#list");
 
-loadmore.addEventListener("click", function() {
+loadmore.addEventListener("click", function () {
   if (activeFilter === "all courses" || activeFilter === "") {
     const newarray = store.slice(numOfElements, numOfElements + 10);
     return render(newarray);
   }
-  const filteredItems = store.filter(item => item.type === activeFilter);
+  const filteredItems = store.filter((item) => item.type === activeFilter);
   const newarray = filteredItems.slice(numOfElements, numOfElements + 10);
   render(newarray);
   console.log(filteredItems);
@@ -40,13 +40,13 @@ loadmore.addEventListener("click", function() {
   console.log(numOfElements);
 });
 
-[...navTabs].forEach(function(navTab) {
+[...navTabs].forEach(function (navTab) {
   // co znacze te trzy kropeczki, dlaczego wewnatrz jest nazwa function? // kropeczki dodaja nam metody np bo to co pobieramy przez quwry jest ograniczona przez metody , my tu w sumie nie potrzebowalismy bo foreach byl ale jest to dobra praktyka
-  navTab.addEventListener("click", function() {
+  navTab.addEventListener("click", function () {
     numOfElements = 0;
     activeFilter = navTab.innerHTML.toLowerCase();
     // remove all 'active' classes from navigation tabs
-    navTabs.forEach(nt => nt.classList.remove("nav-menu__item--active"));
+    navTabs.forEach((nt) => nt.classList.remove("nav-menu__item--active"));
 
     // add 'active' class to clicked navigation tab
     navTab.classList.add("nav-menu__item--active");
@@ -56,7 +56,7 @@ loadmore.addEventListener("click", function() {
       return render(store); // tutaj return powoduje ze funckja juz nie idzie dalej, ta co na klika
     }
 
-    const filterdItems = store.filter(item => item.type === activeFilter);
+    const filterdItems = store.filter((item) => item.type === activeFilter);
 
     app.innerHTML = ""; // po co zerujemy kontent? - zeby sie nie sklajaly klejne elementy po klikaniu
     render(filterdItems);
